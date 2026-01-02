@@ -1,4 +1,4 @@
-# Proyecto-En5Capas-Escritorio
+# Proyecto en 5capas version Escritorio
 Modulo de presentación terminado, consulta desde el Id y presentación de la información en el formulario
 
 #FORMULARIO
