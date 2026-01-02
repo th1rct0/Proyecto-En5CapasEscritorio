@@ -338,7 +338,7 @@ namespace Negocio
 
         public E_Customer GetOne(int Customer_Id)
         {
-            return D_Cus.GetOne(Customer_Id); // Method to retrieve a single customer by ID from the Data Access Layer /Recivora un dato una fila de la tabla
+            return D_Cus.GetOne(Customer_Id); // Method to retrieve a single customer by ID from the Data Access Layer /Recive un dato una fila de la tabla
         }
         public int Insert(E_Customer oCustomer) 
         { 
@@ -355,5 +355,8 @@ Tambien un metodo en el Cuadro de texto para buscar al presionar enter.
 
 
 <img width="814" height="640" alt="image" src="https://github.com/user-attachments/assets/edf4390e-110b-4c32-829d-34e735befe50" />
+
+Presentacion de la informacion, se busca desde el ID presionando enter.
+<img width="814" height="640" alt="image" src="https://github.com/th1rct0/Proyecto-En5CapasPresentacion/blob/main/proyectoencapapresentainformacion.png" />
 
 
