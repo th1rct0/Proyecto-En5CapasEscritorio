@@ -138,6 +138,7 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                     }
                 }
             }
+##P_Customer
     
             P_Cus
             using System;
@@ -175,6 +176,7 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                 }
             }
 
+#D_Customer
 
             D_Customer
             using System;
@@ -307,6 +309,8 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                     }
                 }
             }
+
+#N_Customer
             
             
             N_Customer
@@ -402,7 +406,8 @@ En D_Customer.cs se Agrega el Metodo:
         
                 }
 
-    En el boton de borrar el Codigo:
+En el boton de borrar el Codigo:
+    
         private void btnBorrar_Click(object sender, EventArgs e)
             {
                 int vCustId = Convert.ToInt32((txtCustomerId.Text == string.Empty) ? "0": txtCustomerId.Text);
