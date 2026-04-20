@@ -5,21 +5,23 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
 
 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using Entidades;
 
-namespace VT_Ca
-{
-    public partial class Form1 : Form
+
+        using System;
+        using System.Collections.Generic;
+        using System.ComponentModel;
+        using System.Data;
+        using System.Drawing;
+        using System.Linq;
+        using System.Text;
+        using System.Threading.Tasks;
+        using System.Windows.Forms;
+        using System.Data.SqlClient;
+        using Entidades;
+
+    namespace VT_Ca
+    {
+        public partial class Form1 : Form
     {
         P_Customer oCliente = new P_Customer();// Instancia de la clase de la capa de presentación
         E_Customer oCliente_Ent = new E_Customer();//instancia de la clase entidad
@@ -29,7 +31,6 @@ namespace VT_Ca
         }
         private void IniDG()  // COn INidg se llena el datagridview
         {
-
             try
             {
 
@@ -116,7 +117,7 @@ namespace VT_Ca
             }
 
             if (vCustid != -1)
-            {
+                {
                 /*Si se grabo bien vCust tiene un valor diferente de -1 */
                 txtCustomerId.Text = Convert.ToString(vCustid);
              oCliente_Ent.CustomerId = vCustid;
@@ -125,76 +126,76 @@ namespace VT_Ca
 
 
 
-            }
+                }
             else
-            {
-                MessageBox.Show("Error al Grabar el Registro");
-            }
+                {
+                    MessageBox.Show("Error al Grabar el Registro");
+                }
 
             IniDG();//Refresca el datagridview
             //Inicializar DataGridView y enviar datos 
             txtCustomerId_KeyPress(sender, new KeyPressEventArgs((char)Keys.Return));//refresca los datos del formulario
-        }
-    }
-}
-
-P_Cus
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Data;
-using System.Data.SqlClient;
-using Entidades;
-using Negocio;
-
-
-
-namespace VT_Ca
-{
-    public class P_Customer
-    {
-        N_Customer N_Cus = new N_Customer();  // Instance of Business Logic Layer for Customer
-        public DataSet GetAll()
-        {
-            return N_Cus.GetAll(); // Method to retrieve all customers from the Business Logic Layer
-        }
-        public E_Customer GetOne(int Customer_Id)
-        {
-            return N_Cus.GetOne(Customer_Id); // 
-
-        }
-        public int Insert(E_Customer oCustomer)
-        {
-            return N_Cus.Insert(oCustomer); // Method to insert a new customer into the database via the Data Access Layer
-        }
-
-    }
-}
+                    }
+                }
+            }
+    
+            P_Cus
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Text;
+            using System.Threading.Tasks;
+            
+            using System.Data;
+            using System.Data.SqlClient;
+            using Entidades;
+            using Negocio;
 
 
-D_Customer
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using System.Data;
-using System.Data.SqlClient;
-using Entidades;
-using System.Runtime.Remoting.Messaging;
+            namespace VT_Ca
+            {
+                public class P_Customer
+                {
+                    N_Customer N_Cus = new N_Customer();  // Instance of Business Logic Layer for Customer
+                    public DataSet GetAll()
+                    {
+                        return N_Cus.GetAll(); // Method to retrieve all customers from the Business Logic Layer
+                    }
+                    public E_Customer GetOne(int Customer_Id)
+                    {
+                        return N_Cus.GetOne(Customer_Id); // 
+            
+                    }
+                    public int Insert(E_Customer oCustomer)
+                    {
+                        return N_Cus.Insert(oCustomer); // Method to insert a new customer into the database via the Data Access Layer
+                    }
+            
+                }
+            }
 
-namespace Datos
-{
-    public class D_Customer : CAD //tener acceso a la clase DEBSAccesoDatos para conectarnos a la base de datos
-    {
-        public DataSet GetAll()// Method to retrieve all customers
-        {
-            DataSet dataSet = new DataSet();
-            DataSet DS = dataSet;
+
+            D_Customer
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Text;
+            using System.Threading.Tasks;
+            
+            using System.Data;
+            using System.Data.SqlClient;
+            using Entidades;
+            using System.Runtime.Remoting.Messaging;
+            
+            namespace Datos
+            {
+                public class D_Customer : CAD //tener acceso a la clase DEBSAccesoDatos para conectarnos a la base de datos
+                {
+                    public DataSet GetAll()// Method to retrieve all customers
+                    {
+                        DataSet dataSet = new DataSet();
+                        DataSet DS = dataSet;
 
             try
             {
@@ -212,18 +213,16 @@ namespace Datos
             }
 
 
-
-
-            return DS;
-        }
-
-        public E_Customer GetOne(int CustomerId)
-        {
-            E_Customer vRes = new E_Customer();
-
-            SqlCommand cmd = new SqlCommand();
-            try
+                return DS;
+            }
+    
+            public E_Customer GetOne(int CustomerId)
             {
+                E_Customer vRes = new E_Customer();
+    
+                SqlCommand cmd = new SqlCommand();
+                try
+                {
                 cmd = CrearComando("Customer_Get");
                 cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
 
@@ -264,10 +263,10 @@ namespace Datos
                 cmd.Dispose();
                 CerrarConexion();
             }
-            return vRes;
-        }
-        public int Insert(E_Customer oCustomer)
-        {
+                return vRes;
+            }
+            public int Insert(E_Customer oCustomer)
+            {
             int vRes = -1;
             SqlCommand cmd = new SqlCommand();
             try
@@ -301,52 +300,52 @@ namespace Datos
             }
             finally
             {
-                cmd.Dispose();//Limpiar recursos
-                CerrarConexion();
+                            cmd.Dispose();//Limpiar recursos
+                            CerrarConexion();
+                        }
+                        return vRes;
+                    }
+                }
             }
-            return vRes;
-        }
-    }
-}
-
-
-N_Customer
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System.Data.SqlClient;
-using System.Data;
-
-using Entidades; //tener acceso a la clase Entidades
-using Datos;  //tener acceso a la clase Datos
-
-namespace Negocio
-{
-    public class N_Customer
-    {
-        D_Customer D_Cus = new D_Customer(); // Instance of Data Access Layer for Customer
-
-        public DataSet GetAll()
-        {
-            return D_Cus.GetAll(); // Method to retrieve all customers from the Data Access Layer
-
-        }
-
-        public E_Customer GetOne(int Customer_Id)
-        {
-            return D_Cus.GetOne(Customer_Id); // Method to retrieve a single customer by ID from the Data Access Layer /Recive un dato una fila de la tabla
-        }
-        public int Insert(E_Customer oCustomer) 
-        { 
-         return D_Cus.Insert(oCustomer); // Method to insert a new customer into the database via the Data Access Layer
-        }
-
-    }
-
-}
+            
+            
+            N_Customer
+            using System;
+            using System.Collections.Generic;
+            using System.Linq;
+            using System.Text;
+            using System.Threading.Tasks;
+            
+            using System.Data.SqlClient;
+            using System.Data;
+            
+            using Entidades; //tener acceso a la clase Entidades
+            using Datos;  //tener acceso a la clase Datos
+            
+            namespace Negocio
+            {
+                public class N_Customer
+                {
+                    D_Customer D_Cus = new D_Customer(); // Instance of Data Access Layer for Customer
+            
+                    public DataSet GetAll()
+                    {
+                        return D_Cus.GetAll(); // Method to retrieve all customers from the Data Access Layer
+            
+                    }
+            
+                    public E_Customer GetOne(int Customer_Id)
+                    {
+                        return D_Cus.GetOne(Customer_Id); // Method to retrieve a single customer by ID from the Data Access Layer /Recive un dato una fila de la tabla
+                    }
+                    public int Insert(E_Customer oCustomer) 
+                    { 
+                     return D_Cus.Insert(oCustomer); // Method to insert a new customer into the database via the Data Access Layer
+                    }
+            
+                }
+            
+            }
 
 
 Se tienen que modificar estos archivos y agregar un boton para Grabar el dato.
@@ -359,83 +358,83 @@ Presentacion de la informacion, se busca desde el ID presionando enter.
     
     
     Metodo para eliminar en N_Customer.cs
-   public Boolean Delete(int CustomerId)
-        {
-            return D_Cus.Delete(CustomerId); // Method to delete a customer by ID via the Data Access Layer
-        }
+       public Boolean Delete(int CustomerId)
+            {
+                return D_Cus.Delete(CustomerId); // Method to delete a customer by ID via the Data Access Layer
+            }
 
 
 
 En D_Customer.cs se Agrega el Metodo:
-   public Boolean Delete(int CustomerId)
-        {
-
-            //##DATOS TIENE QUE SER EN LA CLASE D_CUSTOMER
-
-            SqlCommand cmd = new SqlCommand();
-            Boolean vRes = false;
-            int vCant = -1;
-
-            try
-            {
-                cmd = CrearComando("Customer_Del"); //Se crea el comando con el parametro almacnado
-                cmd.Parameters.AddWithValue("@CustomerId", CustomerId);//se pasa el parametro , con lo que trae el metodo CustomerId
-
-                AbrirConexion();
-                vCant = Ejecuta_Accion(ref cmd);
-
-                if (vCant > 0)
+           public Boolean Delete(int CustomerId)
                 {
-                    vRes = true;
+        
+                    //##DATOS TIENE QUE SER EN LA CLASE D_CUSTOMER
+        
+                    SqlCommand cmd = new SqlCommand();
+                    Boolean vRes = false;
+                    int vCant = -1;
+        
+                    try
+                    {
+                        cmd = CrearComando("Customer_Del"); //Se crea el comando con el parametro almacnado
+                        cmd.Parameters.AddWithValue("@CustomerId", CustomerId);//se pasa el parametro , con lo que trae el metodo CustomerId
+        
+                        AbrirConexion();
+                        vCant = Ejecuta_Accion(ref cmd);
+        
+                        if (vCant > 0)
+                        {
+                            vRes = true;
+                        }
+                    }
+                    catch (Exception Ex)
+                    {
+                        throw new Exception(Ex.Message, Ex);
+        
+                    }
+                    finally
+                    {
+                        cmd.Dispose();
+                        CerrarConexion();
+                    }
+                    return vRes;
+        
                 }
-            }
-            catch (Exception Ex)
-            {
-                throw new Exception(Ex.Message, Ex);
-
-            }
-            finally
-            {
-                cmd.Dispose();
-                CerrarConexion();
-            }
-            return vRes;
-
-        }
 
     En el boton de borrar el Codigo:
-    private void btnBorrar_Click(object sender, EventArgs e)
-        {
-            int vCustId = Convert.ToInt32((txtCustomerId.Text == string.Empty) ? "0": txtCustomerId.Text);
-
-            if(vCustId == 0) 
+        private void btnBorrar_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("No ha seleccionado registro a Borrar");
-                return;
-            }
-            if(MessageBox.Show("Procede a ELiminar un registro. Continuar?","Mucho Cuidado",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
-            {
-                return;
-            }
-            try
-            {
-                if (oCliente.Delete(vCustId))
+                int vCustId = Convert.ToInt32((txtCustomerId.Text == string.Empty) ? "0": txtCustomerId.Text);
+    
+                if(vCustId == 0) 
                 {
-                    MessageBox.Show("Registro ELiminado Satisfactoriamente");
-                    IniDG();
-
+                    MessageBox.Show("No ha seleccionado registro a Borrar");
+                    return;
                 }
-                else
+                if(MessageBox.Show("Procede a ELiminar un registro. Continuar?","Mucho Cuidado",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
-                    MessageBox.Show("Error Eliminando Registro");
-
+                    return;
+                }
+                try
+                {
+                    if (oCliente.Delete(vCustId))
+                    {
+                        MessageBox.Show("Registro ELiminado Satisfactoriamente");
+                        IniDG();
+    
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error Eliminando Registro");
+    
+                    }
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
                 }
             }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
-        }
  
 
 <img width="814" height="640" alt="image" src="https://github.com/th1rct0/Proyecto-En5CapasPresentacion/blob/main/proyectoencapapresentainformacion.png" />
