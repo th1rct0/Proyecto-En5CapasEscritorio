@@ -347,6 +347,10 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                     { 
                      return D_Cus.Insert(oCustomer); // Method to insert a new customer into the database via the Data Access Layer
                     }
+                     public Boolean Delete(int CustomerId)
+                        {
+                            return D_Cus.Delete(CustomerId); // Method to delete a customer by ID                                 via the Data Access Layer
+                        }
             
                 }
             
@@ -368,7 +372,12 @@ Presentacion de la informacion, se busca desde el ID presionando enter.
             {
                 return D_Cus.Delete(CustomerId); // Method to delete a customer by ID via the Data Access Layer
             }
-
+ Metodo para eliminar en P_Customer.cs Capa de Presentacion:
+      
+       public Boolean Delete(int CustomerId)
+            {
+                return N_Cus.Delete(CustomerId); // Method to delete a customer by ID via the Data Access Layer
+            }
 
 
 En D_Customer.cs se Agrega el Metodo:
