@@ -357,7 +357,7 @@ Se tienen que modificar estos archivos y agregar un boton para Grabar el dato.
 Tambien un metodo en el Cuadro de texto para buscar al presionar enter.
 
 
-<img width="814" height="640" alt="image" src="https://github.com/user-attachments/assets/edf4390e-110b-4c32-829d-34e735befe50" />
+<img width="814" height="640" alt="image" src="presentandoInfo.jpg"/>
 
 Presentacion de la informacion, se busca desde el ID presionando enter.
     
