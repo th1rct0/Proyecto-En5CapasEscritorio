@@ -52,29 +52,30 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
         private void txtCustomerId_KeyPress(object sender, KeyPressEventArgs e)
         {//cuando tecleas enter en el textbox
             if (e.KeyChar == (char)Keys.Return)
-            {   int CusId= Convert.ToInt32(txtCustomerId.Text);
+            {          
+                    int CusId= Convert.ToInt32(txtCustomerId.Text);
 
                 try
                 {
-                    oCliente_Ent = oCliente.GetOne(CusId);
-                    chkNamSTyle.Checked = oCliente_Ent.NameStyle;
-                    txtTitle.Text = oCliente_Ent.Title;
-                    txtFirstName.Text = oCliente_Ent.FirstName;
-                    txtMiddleName.Text = oCliente_Ent.MiddleName;
-                    txtLastName.Text = oCliente_Ent.LastName;
-                    txtSuffiix.Text = oCliente_Ent.Suffix;
-                    txtCompanyName.Text = oCliente_Ent.CompanyName;
-                   textBoxtxtSalesPerson.Text = oCliente_Ent.SalesPerson;
-                    txtEmailAddress.Text = oCliente_Ent.EmailAddress;
-                    txtPhone.Text = oCliente_Ent.Phone;
-                    txtPasswordhash.Text = oCliente_Ent.PasswordHash;
-                    txtPasswordSalt.Text = oCliente_Ent.PasswordSalt;
+                            oCliente_Ent = oCliente.GetOne(CusId);
+                            chkNamSTyle.Checked = oCliente_Ent.NameStyle;
+                            txtTitle.Text = oCliente_Ent.Title;
+                            txtFirstName.Text = oCliente_Ent.FirstName;
+                            txtMiddleName.Text = oCliente_Ent.MiddleName;
+                            txtLastName.Text = oCliente_Ent.LastName;
+                            txtSuffiix.Text = oCliente_Ent.Suffix;
+                            txtCompanyName.Text = oCliente_Ent.CompanyName;
+                           textBoxtxtSalesPerson.Text = oCliente_Ent.SalesPerson;
+                            txtEmailAddress.Text = oCliente_Ent.EmailAddress;
+                            txtPhone.Text = oCliente_Ent.Phone;
+                            txtPasswordhash.Text = oCliente_Ent.PasswordHash;
+                            txtPasswordSalt.Text = oCliente_Ent.PasswordSalt;
 
 
                 }
                 catch(Exception Ex)
                 {
-                    MessageBox.Show("TextBox--->   " + Ex.Message);
+                            MessageBox.Show("TextBox--->   " + Ex.Message);
                 }
                 
             }
@@ -87,42 +88,42 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
              
              */
 
-            oCliente_Ent.CustomerId = Convert.ToInt32((txtCustomerId.Text == string.Empty) ? null : txtCustomerId.Text);
-            //si el valor del txtCustomerId es cadena vacia asigna null, de lo contrario asigna el valor del textbox
-            oCliente_Ent.NameStyle = chkNamSTyle.Checked;
-            oCliente_Ent.Title = txtTitle.Text;
-            oCliente_Ent.FirstName = txtFirstName.Text;
-            oCliente_Ent.MiddleName = txtMiddleName.Text;
-            oCliente_Ent.LastName = txtLastName.Text;
-            oCliente_Ent.Suffix = txtSuffiix.Text;
-            oCliente_Ent.CompanyName = txtCompanyName.Text;
-            oCliente_Ent.SalesPerson = textBoxtxtSalesPerson.Text;
-            oCliente_Ent.EmailAddress = txtEmailAddress.Text;
-            oCliente_Ent.Phone = txtPhone.Text;
-            oCliente_Ent.PasswordHash = txtPasswordhash.Text;
-            oCliente_Ent.PasswordSalt = txtPasswordSalt.Text;
+                    oCliente_Ent.CustomerId = Convert.ToInt32((txtCustomerId.Text == string.Empty) ? null : txtCustomerId.Text);
+                    //si el valor del txtCustomerId es cadena vacia asigna null, de lo contrario asigna el valor del textbox
+                    oCliente_Ent.NameStyle = chkNamSTyle.Checked;
+                    oCliente_Ent.Title = txtTitle.Text;
+                    oCliente_Ent.FirstName = txtFirstName.Text;
+                    oCliente_Ent.MiddleName = txtMiddleName.Text;
+                    oCliente_Ent.LastName = txtLastName.Text;
+                    oCliente_Ent.Suffix = txtSuffiix.Text;
+                    oCliente_Ent.CompanyName = txtCompanyName.Text;
+                    oCliente_Ent.SalesPerson = textBoxtxtSalesPerson.Text;
+                    oCliente_Ent.EmailAddress = txtEmailAddress.Text;
+                    oCliente_Ent.Phone = txtPhone.Text;
+                    oCliente_Ent.PasswordHash = txtPasswordhash.Text;
+                    oCliente_Ent.PasswordSalt = txtPasswordSalt.Text;
 
             int vCustid = -1;//Valor del CustId, si es -1 indica que no se grabo correctamente
             try {
 
-                /* */
-                 vCustid = oCliente.Insert(oCliente_Ent);
+                        /* */
+                         vCustid = oCliente.Insert(oCliente_Ent);
                
                 
             }
             catch {
-                vCustid = -1;//Si hubo error se pone -1
-                MessageBox.Show("Error al Grabar el Registro");
+                        vCustid = -1;//Si hubo error se pone -1
+                        MessageBox.Show("Error al Grabar el Registro");
 
             }
 
             if (vCustid != -1)
                 {
-                /*Si se grabo bien vCust tiene un valor diferente de -1 */
-                txtCustomerId.Text = Convert.ToString(vCustid);
-             oCliente_Ent.CustomerId = vCustid;
-               
-                MessageBox.Show("Registro Grabado Correctamente. CustId: " + vCustid.ToString());
+                        /*Si se grabo bien vCust tiene un valor diferente de -1 */
+                        txtCustomerId.Text = Convert.ToString(vCustid);
+                     oCliente_Ent.CustomerId = vCustid;
+                       
+                        MessageBox.Show("Registro Grabado Correctamente. CustId: " + vCustid.ToString());
 
 
 
@@ -132,9 +133,9 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                     MessageBox.Show("Error al Grabar el Registro");
                 }
 
-            IniDG();//Refresca el datagridview
-            //Inicializar DataGridView y enviar datos 
-            txtCustomerId_KeyPress(sender, new KeyPressEventArgs((char)Keys.Return));//refresca los datos del formulario
+                                IniDG();//Refresca el datagridview
+                            //Inicializar DataGridView y enviar datos 
+                            txtCustomerId_KeyPress(sender, new KeyPressEventArgs((char)Keys.Return));//refresca los datos del formulario
                     }
                 }
             }
@@ -196,40 +197,40 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                 {
                     public DataSet GetAll()// Method to retrieve all customers
                     {
-                        DataSet dataSet = new DataSet();
-                        DataSet DS = dataSet;
+                                DataSet dataSet = new DataSet();
+                                DataSet DS = dataSet;
 
             try
             {
 
 
-                SqlCommand cmd = CrearComando("Customer_Get");// Create a SqlCommand to execute the stored procedure "Customer_Get"
-                DS = GetDS(cmd, "Customer_Get");// Execute the command and get the DataSet
+                        SqlCommand cmd = CrearComando("Customer_Get");// Create a SqlCommand to execute the stored procedure "Customer_Get"
+                        DS = GetDS(cmd, "Customer_Get");// Execute the command and get the DataSet
 
             }
             catch (SqlException Ex)// Catch any exceptions that occur during the process
 
             {
-                throw new Exception("Error Obteniendo todos los registros en D_CUSTOMER   " + Ex.Message, Ex);
+                        throw new Exception("Error Obteniendo todos los registros en D_CUSTOMER   " + Ex.Message, Ex);
 
             }
 
 
-                return DS;
+                        return DS;
             }
     
             public E_Customer GetOne(int CustomerId)
             {
-                E_Customer vRes = new E_Customer();
-    
-                SqlCommand cmd = new SqlCommand();
+                        E_Customer vRes = new E_Customer();
+            
+                        SqlCommand cmd = new SqlCommand();
                 try
                 {
-                cmd = CrearComando("Customer_Get");
-                cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
-
-                AbrirConexion();
-                SqlDataReader consulta = Ejecuta_Consulta(cmd);
+                        cmd = CrearComando("Customer_Get");
+                        cmd.Parameters.AddWithValue("@CustomerId", CustomerId);
+        
+                        AbrirConexion();
+                        SqlDataReader consulta = Ejecuta_Consulta(cmd);
                 if (consulta.Read())
                 {
                     if (consulta.HasRows)
@@ -252,60 +253,60 @@ Modulo de presentación terminado, consulta desde el Id y presentación de la in
                         vRes.ModifiedDate = (DateTime)consulta["ModifiedDate"];
                     }
                 }
-                //   return vRes;
-                consulta.Close();
-                consulta.Dispose();
+                        //   return vRes;
+                        consulta.Close();
+                        consulta.Dispose();
 
             }
             catch (SqlException Ex)
             {
-                throw new Exception("Error Obteniendo un registro en D_CUSTOMER   " + Ex.Message, Ex);
+                        throw new Exception("Error Obteniendo un registro en D_CUSTOMER   " + Ex.Message, Ex);
             }
             finally { 
-                cmd.Dispose();
-                CerrarConexion();
+                        cmd.Dispose();
+                        CerrarConexion();
             }
                 return vRes;
             }
             public int Insert(E_Customer oCustomer)
             {
-            int vRes = -1;
-            SqlCommand cmd = new SqlCommand();
+                    int vRes = -1;
+                    SqlCommand cmd = new SqlCommand();
             try
             {
-                cmd = CrearComando("Customer_set");
-                cmd.Parameters.AddWithValue("@CustomerId", oCustomer.CustomerId);
-                cmd.Parameters["@CustomerId"].Direction = ParameterDirection.Input;
-
-                cmd.Parameters.AddWithValue("@NameStyle", oCustomer.NameStyle);
-                cmd.Parameters.AddWithValue("@Title", oCustomer.Title);
-               
-                cmd.Parameters.AddWithValue("@FirstName", oCustomer.FirstName);
-                cmd.Parameters.AddWithValue("@MiddleName", oCustomer.MiddleName);
-                cmd.Parameters.AddWithValue("@LastName", oCustomer.LastName);
-                cmd.Parameters.AddWithValue("@Suffix", oCustomer.Suffix);
-                cmd.Parameters.AddWithValue("@CompanyName", oCustomer.CompanyName);
-                cmd.Parameters.AddWithValue("@SalesPerson", oCustomer.SalesPerson);
-                cmd.Parameters.AddWithValue("@EmailAddress", oCustomer.EmailAddress);
-                cmd.Parameters.AddWithValue("@Phone", oCustomer.Phone);
-                cmd.Parameters.AddWithValue("@PasswordHash", oCustomer.PasswordHash);
-                cmd.Parameters.AddWithValue("@PasswordSalt", oCustomer.PasswordSalt);
-               // cmd.Parameters.AddWithValue("@ModifiedDate", oCustomer.ModifiedDate);
-                AbrirConexion();
-                vRes = Ejecuta_Accion(ref cmd);
-                vRes = Convert.ToInt32(cmd.Parameters["@CustomerId"].Value);
+                        cmd = CrearComando("Customer_set");
+                        cmd.Parameters.AddWithValue("@CustomerId", oCustomer.CustomerId);
+                        cmd.Parameters["@CustomerId"].Direction = ParameterDirection.Input;
+        
+                        cmd.Parameters.AddWithValue("@NameStyle", oCustomer.NameStyle);
+                        cmd.Parameters.AddWithValue("@Title", oCustomer.Title);
+                       
+                        cmd.Parameters.AddWithValue("@FirstName", oCustomer.FirstName);
+                        cmd.Parameters.AddWithValue("@MiddleName", oCustomer.MiddleName);
+                        cmd.Parameters.AddWithValue("@LastName", oCustomer.LastName);
+                        cmd.Parameters.AddWithValue("@Suffix", oCustomer.Suffix);
+                        cmd.Parameters.AddWithValue("@CompanyName", oCustomer.CompanyName);
+                        cmd.Parameters.AddWithValue("@SalesPerson", oCustomer.SalesPerson);
+                        cmd.Parameters.AddWithValue("@EmailAddress", oCustomer.EmailAddress);
+                        cmd.Parameters.AddWithValue("@Phone", oCustomer.Phone);
+                        cmd.Parameters.AddWithValue("@PasswordHash", oCustomer.PasswordHash);
+                        cmd.Parameters.AddWithValue("@PasswordSalt", oCustomer.PasswordSalt);
+                       // cmd.Parameters.AddWithValue("@ModifiedDate", oCustomer.ModifiedDate);
+                        AbrirConexion();
+                        vRes = Ejecuta_Accion(ref cmd);
+                        vRes = Convert.ToInt32(cmd.Parameters["@CustomerId"].Value);
 
             }
             catch (Exception Ex)
             {
                 throw new Exception("Error Insertando un registro en D_CUSTOMER   " + Ex.Message, Ex);
             }
-            finally
+                            finally
             {
-                            cmd.Dispose();//Limpiar recursos
-                            CerrarConexion();
+                                    cmd.Dispose();//Limpiar recursos
+                                    CerrarConexion();
                         }
-                        return vRes;
+                                return vRes;
                     }
                 }
             }
@@ -362,6 +363,7 @@ Presentacion de la informacion, se busca desde el ID presionando enter.
     
     
     Metodo para eliminar en N_Customer.cs
+      
        public Boolean Delete(int CustomerId)
             {
                 return D_Cus.Delete(CustomerId); // Method to delete a customer by ID via the Data Access Layer
@@ -370,39 +372,40 @@ Presentacion de la informacion, se busca desde el ID presionando enter.
 
 
 En D_Customer.cs se Agrega el Metodo:
+          
            public Boolean Delete(int CustomerId)
                 {
         
                     //##DATOS TIENE QUE SER EN LA CLASE D_CUSTOMER
         
-                    SqlCommand cmd = new SqlCommand();
-                    Boolean vRes = false;
-                    int vCant = -1;
+                            SqlCommand cmd = new SqlCommand();
+                            Boolean vRes = false;
+                            int vCant = -1;
         
                     try
                     {
-                        cmd = CrearComando("Customer_Del"); //Se crea el comando con el parametro almacnado
-                        cmd.Parameters.AddWithValue("@CustomerId", CustomerId);//se pasa el parametro , con lo que trae el metodo CustomerId
-        
-                        AbrirConexion();
-                        vCant = Ejecuta_Accion(ref cmd);
+                                cmd = CrearComando("Customer_Del"); //Se crea el comando con el parametro almacnado
+                                cmd.Parameters.AddWithValue("@CustomerId", CustomerId);//se pasa el parametro , con lo que trae el metodo CustomerId
+                
+                                AbrirConexion();
+                                vCant = Ejecuta_Accion(ref cmd);
         
                         if (vCant > 0)
                         {
-                            vRes = true;
+                                    vRes = true;
                         }
                     }
                     catch (Exception Ex)
                     {
-                        throw new Exception(Ex.Message, Ex);
+                                throw new Exception(Ex.Message, Ex);
         
                     }
                     finally
                     {
-                        cmd.Dispose();
-                        CerrarConexion();
+                                cmd.Dispose();
+                                CerrarConexion();
                     }
-                    return vRes;
+                            return vRes;
         
                 }
 
